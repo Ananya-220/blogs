@@ -74,6 +74,7 @@ if (isset($_POST["submit"])) {
         <h1 align="center">LOGIN PAGE</h1>
         <form method="post">
             <div class="input-group">
+                <label>Email : </label>
                 <input type="email" name="email" placeholder="Enter your email" value="<?= htmlspecialchars($enteredEmail) ?>">
                 <span style="color:red"><?php if ($emailErr != "") {
                                             echo $emailErr;
