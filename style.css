@@ -61,7 +61,7 @@ select {
     font-size: 14px;
 }
 
-input[type="name"],
+input[type="text"],
 select {
     width: 100%;
     padding: 20px;

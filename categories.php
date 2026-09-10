@@ -15,10 +15,17 @@
     include_once('check_login.php');
     include_once 'sidebar.php';
     include_once('header.php');
+    include_once('connection.php');
+
+
+    $sql = "SELECT * FROM categories";
+    $result = mysqli_query($conn , $sql);
+
+
     ?>
             <div class="table-responsive mt-5 category-table">
                 <div class="d-grid gap-2 d-md-flex mb-2 justify-content-md-end">
-                    <a class="btn btn-primary " type="button" href='add_new.php'>Create Category</a>
+                    <a class="btn btn-primary" type="button" href='add_new.php'>Create Category</a>
                 </div>
                 <table class="table table-bordered border-dark table-hover table-light align-middle">
                     <thead class="table-primary table-bordered border-dark align-middle">
@@ -30,10 +37,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        if(mysqli_num_rows($result) > 0)
+                            { 
+                            while($row = mysqli_fetch_assoc($result)) {
+                                $class = $row["status"] == "1" ? "success" : "danger";
+                        ?>
                         <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td><span class="badge rounded-pill text-bg-success">Active</span></td>
+                            <th scope="row"><?php echo $row["id"] ; ?></th>
+                            <td><?php echo ucfirst($row["name"]) ; ?></td>
+                            <td><span class="badge rounded-pill text-bg-<?php echo $class; ?>"><?php echo $row["status"] == "1" ? "Active" : "Inactive"; ?></span></td>
                             <td class="table-data align-top" align="center">
                                 <div class="d-grid gap-2 mx-auto d-md-block">
                                     <button type="button" class="btn btn-success btn-sm">Edit</button>
@@ -41,24 +54,21 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td><span class="badge rounded-pill text-bg-danger">Inactive</span></td>
-                            <td  align="center">
-                                <button type="button" class="btn btn-success btn-sm">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>John</td>
-                            <td><span class="badge rounded-pill text-bg-success">Active</span></td>
-                            <td  align="center">
-                                <button type="button" class="btn btn-success btn-sm">Edit</button>
-                                <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                            </td>
-                        </tr>
+                        <?php
+                            }
+                        ?>
+                            
+                        <?php  
+                            }
+                            else {
+                        ?>
+                                <tr>
+                                    <td colspan="4" align="center">No Records Found</td>
+                                </tr>
+                        <?php 
+                            }
+                        ?>
+                        
                     </tbody>
                 </table>
             </div>

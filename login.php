@@ -4,16 +4,6 @@ session_start();
 if (isset($_SESSION['email'])) {
     header("Location: dashboard.php");
 }
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "blog";
-
-$conn = mysqli_connect($servername, $username, $password, $dbname);
-
-if (!$conn) {
-    die("Connection failed : " . mysqli_connect_error());
-}
 
 $emailErr = $passwordErr = "";
 $enteredEmail = $enteredPassword = "";
@@ -31,7 +21,7 @@ if (isset($_POST["submit"])) {
     }
 
     //validation ends
-
+    include_once('connection.php');
     $sql = "SELECT * FROM users WHERE email='" . $enteredEmail . "' AND password='" . $enteredPassword . "'";
 
     $result = mysqli_query($conn, $sql);

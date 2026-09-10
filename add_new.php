@@ -1,3 +1,35 @@
+<?php
+$validation = true;
+$nameErr = $statusErr = "";
+$enteredName = $enteredStatus = "";
+//validation start
+if (isset($_POST["submit"])) {
+    $enteredName = $_POST["name"];
+    $enteredStatus = $_POST["status"];
+
+    if (empty($enteredName)) {
+        $nameErr = "Name is required !";
+        $validation = false;
+    }
+    if (empty($enteredStatus) && $enteredStatus != 0) {
+        $statusErr = "Status is required !";
+        $validation = false;
+    }
+
+    include('connection.php');
+    if ($validation) {
+        $sql = "INSERT INTO categories(name, status) VALUES ('$enteredName' , $enteredStatus)";
+        if (mysqli_query($conn, $sql)) {
+            echo "New record created successfully";
+            header("location: categories.php");
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,28 +42,32 @@
 </head>
 
 <body>
-    <?php 
+    <?php
     $pagename = "Create Category";
     include_once('check_login.php');
-    include_once "sidebar.php";
+    include_once('sidebar.php');
     include_once('header.php');
     ?>
     <div class="login-box mt-3">
         <h1 align="center">Create Category</h1>
-        <form action="dashboard.php" method="post">
+        <form action="add_new.php" method="post">
             <div class="input-group">
                 <label>Name : </label>
-                <input type="name" name="name" placeholder="Enter your name">
+                <input type="text" name="name" placeholder="Enter your name" value="<?php htmlspecialchars($enteredName) ?>">
+                <span style="color:red"><?php if ($nameErr != "") {
+                                            echo $nameErr;
+                                        }  ?></span>
             </div>
             <div class="input-group">
                 <label>Status : </label><br>
                 <select id="status" name="status">
-                    <option value=" ">Select Status</option>
-                    <option value="active">Active</option>
-                    <option value="inactive">Inactive</option>
+                    <option value="">Select Status</option>
+                    <option value="1" <?php echo ($enteredStatus == "Active") ? "selected" : "" ?>>Active</option>
+                    <option value="0" <?php echo ($enteredStatus == "Inactive") ? "selected" : "" ?>>Inactive</option>
                 </select>
+                <span style="color:red"><?php echo $statusErr ?></span>
             </div>
-            <button type="button" class="btn btn-primary mt-5">Submit</button>
+            <button type="submit" class="btn btn-primary mt-5" name="submit">Submit</button>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                 <a class="btn btn-primary" type="button" href='categories.php'>Back</a>
             </div>

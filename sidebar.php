@@ -24,7 +24,7 @@
             <span class="nav-label">Dashboard</span>
         </a>
 
-        <a href="http://localhost/blogs/categories.php" class="nav-item <?php echo ($pagename == "Categories") ? 'active' : "";?>">
+        <a href="http://localhost/blogs/categories.php" class="nav-item <?php echo ($pagename == "Categories" || $pagename == "Create Category") ? 'active' : "";?>">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
