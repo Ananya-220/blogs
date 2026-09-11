@@ -15,8 +15,7 @@
     include_once('check_login.php');
     include_once 'sidebar.php';
     include_once('header.php');
-    include_once('connection.php');
-
+    include('connection.php');
 
     $sql = "SELECT * FROM categories";
     $result = mysqli_query($conn , $sql);
@@ -49,8 +48,8 @@
                             <td><span class="badge rounded-pill text-bg-<?php echo $class; ?>"><?php echo $row["status"] == "1" ? "Active" : "Inactive"; ?></span></td>
                             <td class="table-data align-top" align="center">
                                 <div class="d-grid gap-2 mx-auto d-md-block">
-                                    <button type="button" class="btn btn-success btn-sm">Edit</button>
-                                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                                    <a type="button" class="btn btn-success btn-sm" href = "edit_categories.php?id=<?php $row["id"]; echo $row['id'] ?>" name="edit">Edit</a>
+                                    <a type="button" class="btn btn-danger btn-sm" href="delete_categories.php?id=<?php $row["id"]; echo $row['id'] ?>" name="delete">Delete</a>
                                 </div>
                             </td>
                         </tr>

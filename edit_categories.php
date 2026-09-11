@@ -1,5 +1,10 @@
 <?php
+
 $validation = true;
+
+include('connection.php');
+
+
 $nameErr = $statusErr = "";
 $enteredName = $enteredStatus = "";
 //validation start
@@ -16,18 +21,38 @@ if (isset($_POST["submit"])) {
         $validation = false;
     }
 
-    include('connection.php');
-    if ($validation) {
-        $sql = "INSERT INTO categories(name, status) VALUES ('$enteredName' , $enteredStatus)";
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-            header("location: categories.php");
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    if($validation)
+        {
+                $form_id = $_POST['id'];
+                $sql1 = "UPDATE categories SET name = '$enteredName' , status = $enteredStatus WHERE id = $form_id";
+                if (mysqli_query($conn, $sql1)) {
+                    echo "Record updated successfully";
+                    header("location: categories.php");
+                } 
+                else {
+                    echo "Error: " . $sql1 . "<br>" . mysqli_error($conn);
+                }
+            }
+        
+        }
+
+$name = $status = "";
+if ($validation) {
+    if (isset($_GET['id'])) {
+        $id = $_GET['id'];
+        $sql = "SELECT * FROM categories WHERE id = $id";
+        $result = mysqli_query($conn, $sql);
+        if ($row = mysqli_fetch_assoc($result)) {
+            $name = $row["name"];
+            $status = $row["status"];
         }
     }
 }
+
+
+
 ?>
+
 
 
 <!DOCTYPE html>
@@ -42,26 +67,29 @@ if (isset($_POST["submit"])) {
 </head>
 
 <body>
+
     <?php
-    $pagename = "Create Category";
+    $pagename = "Edit Category";
     include_once('check_login.php');
     include_once('sidebar.php');
     include_once('header.php');
     ?>
+
     <div class="login-box mt-3">
-        <h1 align="center">Create Category</h1>
-        <form action="add_new.php" method="post">
+        <h1 align="center">Edit Category</h1>
+        <form action="edit_categories.php" method="post">
             <div class="input-group">
+                <input type="hidden" name = "id" value="<?php echo $id; ?>">
                 <label>Name : </label>
-                <input type="text" name="name" placeholder="Enter your name" value="<?php htmlspecialchars($enteredName) ?>">
+                <input type="text" name="name" placeholder="Enter your name" value="<?php echo $name; ?>">
                 <span style="color:red"><?php if ($nameErr != "") {echo $nameErr;}  ?></span>
             </div>
             <div class="input-group">
                 <label>Status : </label><br>
                 <select id="status" name="status">
                     <option value="">Select Status</option>
-                    <option value="1" <?php echo ($enteredStatus == "Active") ? "selected" : "" ?>>Active</option>
-                    <option value="0" <?php echo ($enteredStatus == "Inactive") ? "selected" : "" ?>>Inactive</option>
+                    <option value="1" <?php echo ($status == "1") ? "selected" : "" ?>>Active</option>
+                    <option value="0" <?php echo ($status == "0") ? "selected" : "" ?>>Inactive</option>
                 </select>
                 <span style="color:red"><?php echo $statusErr ?></span>
             </div>
