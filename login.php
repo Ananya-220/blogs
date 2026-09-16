@@ -32,6 +32,7 @@ if (isset($_POST["submit"])) {
         if ($enteredEmail == $row['email'] && $enteredPassword == $row['password']) {
             $_SESSION['email'] = $row['email'];
             $_SESSION['name'] = $row['name'];
+            $_SESSION['id'] = $row['id'];
             header("location: dashboard.php");
             exit();
         }

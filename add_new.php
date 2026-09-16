@@ -63,7 +63,7 @@ if (isset($_POST["submit"])) {
                     <option value="1" <?php echo ($enteredStatus == "Active") ? "selected" : "" ?>>Active</option>
                     <option value="0" <?php echo ($enteredStatus == "Inactive") ? "selected" : "" ?>>Inactive</option>
                 </select>
-                <span style="color:red"><?php echo $statusErr ?></span>
+                <span style="color:red"><?php echo $statusErr; ?></span>
             </div>
             <button type="submit" class="btn btn-primary mt-5" name="submit">Submit</button>
             <div class="d-grid gap-2 d-md-flex justify-content-md-end">

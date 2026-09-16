@@ -70,7 +70,7 @@ select {
     font-size: 14px;
 }
 
-input[type="select"],
+input[type="select"], 
 .form-select {
     width: 100%;
     padding: 20px;

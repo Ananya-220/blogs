@@ -33,7 +33,7 @@
             <span class="nav-label">Categories</span>
         </a>
 
-        <a href="#" class="nav-item">
+        <a href="http://localhost/blogs/posts.php" class="nav-item <?php echo ($pagename == "Posts" || $pagename == "Create Post") ? 'active' : "";?>">
             <span class="nav-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                     <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" />
