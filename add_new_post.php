@@ -14,6 +14,12 @@ if (isset($_POST["submit"])) {
     $enteredCategories = $_POST["pcategories"];
     $enteredDescription = $_POST["description"];
 
+    $filename = $_FILES["imgUpload"]["name"];
+    $tempname = $_FILES["imgUpload"]["tmp_name"];
+    $folder = "uploaded_images/" . $filename;
+
+    move_uploaded_file($tempname, $folder);
+
     if (empty($enteredTitle)) {
         $titleErr = "Title is required !";
         $validation = false;
@@ -33,18 +39,17 @@ if (isset($_POST["submit"])) {
         $descriptionErr = "Description is required !";
         $validation = false;
     }
-    if ($validation) {
-        $sql = "INSERT INTO posts(title , description , status , category_id , user_id , created_at) VALUES ('$enteredTitle' , '$enteredDescription' , $enteredpostStatus , '$enteredCategories' , " . $_SESSION['id'] . " , NOW())";
-        if (mysqli_query($conn, $sql)) {
-            echo "New record created successfully";
-            header("location: posts.php");
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
-        }
+
+if ($validation) {
+    $sql = "INSERT INTO posts(title , description , status , category_id , user_id , created_at , images) VALUES ('$enteredTitle' , '$enteredDescription' , $enteredpostStatus , '$enteredCategories' , " . $_SESSION['id'] . " , NOW() , '$folder' )";
+    if (mysqli_query($conn, $sql)) {
+        echo "New record created successfully";
+        header("location: posts.php");
+    } else {
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
     }
 }
-
-//validation ends
+}
 
 ?>
 
@@ -66,11 +71,11 @@ if (isset($_POST["submit"])) {
     include_once('header.php');
     ?>
 
-    <div class="login-box mt-3">
+    <div class="login-box mt-5">
 
         <h1 align="center">Create Your Post</h1>
 
-        <form action="add_new_post.php" method="post" class="row g-3">
+        <form action="add_new_post.php" method="post" class="row g-3" enctype="multipart/form-data">
 
             <div class="col-12">
                 <label>Title : </label>
@@ -107,6 +112,12 @@ if (isset($_POST["submit"])) {
                 </select>
                 <span style="color:red"><?php if ($categoriesErr != "") {echo $categoriesErr;}  ?></span>
             </div>
+            
+
+            <div class="col-12">
+                <label>Select Image : </label>
+                <input type="file" name="imgUpload">
+            </div>
 
             <div class="col-12">
                 <label>Description : </label>
@@ -116,7 +127,7 @@ if (isset($_POST["submit"])) {
 
             <div class="d-flex justify-content-between align-items-center mt-5">
                 <button type="submit" class="btn btn-primary" name="submit">Submit</button>
-                <a class="btn btn-primary" href="categories.php">Back</a>
+                <a class="btn btn-primary" href="posts.php">Back</a>
             </div>
 
         </form>

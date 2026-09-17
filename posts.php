@@ -18,7 +18,7 @@
     include_once('header.php');
     include('connection.php');
 
-    $sql = "SELECT p.*, c.name as category_name FROM posts as p INNER JOIN categories as c ON p.category_id = c.id";
+    $sql = "SELECT p.*, c.name as category_name FROM posts as p INNER JOIN categories as c ON p.category_id = c.id ORDER BY p.id";
     $result = mysqli_query($conn, $sql);
     
     ?>
@@ -29,8 +29,9 @@
                 </div>
                 <table class="table table-bordered border-dark table-hover table-light align-middle">
                     <thead class="table-primary table-bordered border-dark align-middle">
-                        <tr>
+                        <tr  align="center">
                             <th scope="col">Id</th>
+                            <th scope="col">Image</th>
                             <th scope="col">Title</th>
                             <th scope="col">Category Selected</th>
                             <th scope="col">Status</th>
@@ -38,7 +39,7 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody  align="center">
                         <?php
                         if(mysqli_num_rows($result) > 0)
                             { 
@@ -47,11 +48,23 @@
                         ?>
                         <tr>
                             <th scope="row"><?php echo $row["id"] ; ?></th>
+                            <td>
+                                <?php
+                                    if ($row["images"] == NULL)
+                                        {
+                                            echo '<img src="uploaded_images/defaultimg.png" height = "100px" width = "120px">';
+                                        }
+                                    else 
+                                        {
+                                            echo '<img src = "' . $row["images"] . '" height = "100px" width = "120px" >';
+                                        }
+                                ?>
+                            </td>
                             <td><?php echo ucfirst($row["title"]) ; ?></td>
                             <td><?php echo $row["category_name"]; ?></td>
                             <td><span class="badge rounded-pill text-bg-<?php echo $class; ?>"><?php echo $row["status"] == "1" ? "Active" : "Inactive"; ?></span></td>
                             <td><?php echo $row["created_at"]; ?></td>
-                            <td class="table-data align-top" align="center">
+                            <td class="table-data align-auto" align="center">
                                 <div class="d-grid gap-2 mx-auto d-md-block">
                                     <a type="button" class="btn btn-success btn-sm" href = "edit_posts.php?id=<?php $row["id"]; echo $row['id'] ?>" name="edit">Edit</a>
                                     <a type="button" class="btn btn-danger btn-sm" href="delete_posts.php?id=<?php $row["id"]; echo $row['id'] ?>" name="delete">Delete</a>
