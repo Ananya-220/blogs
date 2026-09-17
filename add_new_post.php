@@ -75,9 +75,7 @@ if (isset($_POST["submit"])) {
             <div class="col-12">
                 <label>Title : </label>
                 <input type="text" name="title" class="form-control" placeholder="Enter title" value="<?php htmlspecialchars($enteredTitle) ?>">
-                <span style="color:red"><?php if ($titleErr != "") {
-                                            echo $titleErr;
-                                        }  ?></span>
+                <span style="color:red"><?php if ($titleErr != "") {echo $titleErr;}  ?></span>
             </div>
 
             <div class="col-md-6">
@@ -107,9 +105,7 @@ if (isset($_POST["submit"])) {
                     }
                     ?>
                 </select>
-                <span style="color:red"><?php if ($categoriesErr != "") {
-                                            echo $categoriesErr;
-                                        }  ?></span>
+                <span style="color:red"><?php if ($categoriesErr != "") {echo $categoriesErr;}  ?></span>
             </div>
 
             <div class="col-12">
