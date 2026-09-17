@@ -68,10 +68,6 @@ if (isset($_POST["submit"])) {
 
     <div class="login-box mt-3">
 
-        <div class="col-3 justify-content-md-end">
-            <a class="btn btn-outline-primary" type="button" href='posts.php'>Back</a>
-        </div>
-
         <h1 align="center">Create Your Post</h1>
 
         <form action="add_new_post.php" method="post" class="row g-3">
@@ -122,8 +118,9 @@ if (isset($_POST["submit"])) {
                 <span style="color:red"><?php echo $poststatusErr; ?></span>
             </div>
 
-            <div class="col-3">
-                <button type="submit" class="btn btn-primary mt-5" name="submit">Submit</button>
+            <div class="d-flex justify-content-between align-items-center mt-5">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a class="btn btn-primary" href="categories.php">Back</a>
             </div>
 
         </form>

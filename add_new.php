@@ -65,9 +65,9 @@ if (isset($_POST["submit"])) {
                 </select>
                 <span style="color:red"><?php echo $statusErr; ?></span>
             </div>
-            <button type="submit" class="btn btn-primary mt-5" name="submit">Submit</button>
-            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                <a class="btn btn-primary" type="button" href='categories.php'>Back</a>
+            <div class="d-flex justify-content-between align-items-center mt-5">
+                <button type="submit" class="btn btn-primary" name="submit">Submit</button>
+                <a class="btn btn-primary" href="categories.php">Back</a>
             </div>
         </form>
     </div>
