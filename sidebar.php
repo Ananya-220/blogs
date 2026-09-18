@@ -7,7 +7,7 @@
             </svg>
         </div>
         <div class="brand-text">
-            <span class="brand-name">Bloggers</span>
+            <span class="brand-name">OmniVibe</span>
         </div>
     </div>
 
