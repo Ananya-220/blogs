@@ -27,14 +27,14 @@
                 </div>
                 <table class="table table-bordered border-dark table-hover table-light align-middle">
                     <thead class="table-primary table-bordered border-dark align-middle">
-                        <tr>
+                        <tr align="center">
                             <th scope="col">Id</th>
                             <th scope="col">Name</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody align="center">
                         <?php
                         if(mysqli_num_rows($result) > 0)
                             { 

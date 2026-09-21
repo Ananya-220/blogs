@@ -39,7 +39,7 @@
                             <th scope="col">Action</th>
                         </tr>
                     </thead>
-                    <tbody  align="center">
+                    <tbody align="center">
                         <?php
                         if(mysqli_num_rows($result) > 0)
                             { 
