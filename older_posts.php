@@ -24,7 +24,7 @@
 <body>
     <?php
     include('connection.php');
-    $sql = "SELECT * FROM posts WHERE status = 1 ORDER BY created_at DESC LIMIT 4";
+    $sql = "SELECT * FROM posts ORDER BY created_at DESC";
     $result = mysqli_query($conn, $sql);
     ?>
     <!-- Navigation-->
@@ -60,18 +60,8 @@
             <div class="row gx-4 gx-lg-5 justify-content-center">
                 <div class="col-md-10 col-lg-8 col-xl-7">
                     <div class="site-heading">
-                        <h1>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-bluesky" viewBox="0 0 16 16">
-                                <path
-                                    d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948" />
-                            </svg>OmniVibe<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-bluesky" viewBox="0 0 16 16">
-                                <path
-                                    d="M3.468 1.948C5.303 3.325 7.276 6.118 8 7.616c.725-1.498 2.698-4.29 4.532-5.668C13.855.955 16 .186 16 2.632c0 .489-.28 4.105-.444 4.692-.572 2.04-2.653 2.561-4.504 2.246 3.236.551 4.06 2.375 2.281 4.2-3.376 3.464-4.852-.87-5.23-1.98-.07-.204-.103-.3-.103-.218 0-.081-.033.014-.102.218-.379 1.11-1.855 5.444-5.231 1.98-1.778-1.825-.955-3.65 2.28-4.2-1.85.315-3.932-.205-4.503-2.246C.28 6.737 0 3.12 0 2.632 0 .186 2.145.955 3.468 1.948" />
-                            </svg>
-                        </h1>
-                        <span class="subheading">Where casual observations meet structured deep dives on a variety of topics.</span>
+                        <h1>Older Posts</h1>
+                        <span class="subheading">View all the blog posts here.</span>
                     </div>
                 </div>
             </div>
@@ -109,8 +99,7 @@
                 <?php }
                 } ?>
                 <!-- Pager-->
-                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="older_posts.php">Older
-                        Posts →</a></div>
+                <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="index.php">Back →</a></div>
             </div>
         </div>
     </div>
