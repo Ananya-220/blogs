@@ -10,7 +10,7 @@
                         </svg>
                     </button>
                     <div class="header-avatar">
-                        <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="User">
+                        <img src="uploaded_images/defaultimg.png" alt="User">
                     </div>
                 </div>
             </header>

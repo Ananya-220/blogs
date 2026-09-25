@@ -77,7 +77,7 @@
 
     <div class="sidebar-profile">
         <div class="profile-avatar">
-            <img src="https://cdn-icons-png.flaticon.com/512/9187/9187604.png" alt="User avatar" class="avatar-img">
+            <img src="uploaded_images/defaultimg.png" alt="User avatar" class="avatar-img">
             <span class="avatar-status online"></span>
         </div>
         <div class="profile-info">
